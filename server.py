@@ -3,7 +3,6 @@ import hashlib, time, json, secrets
 
 app = Flask(__name__)
 
-# Base de données simple (fichier JSON)
 DB_FILE = "licenses.json"
 
 def load_db():
@@ -16,6 +15,10 @@ def load_db():
 def save_db(db):
     with open(DB_FILE, "w") as f:
         json.dump(db, f)
+
+@app.route("/")
+def home():
+    return "Serveur de clés OK"
 
 @app.route("/verify", methods=["POST"])
 def verify():
